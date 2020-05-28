@@ -1,0 +1,9 @@
+{
+  "name": "fs",
+  "version": "1.0.0",
+  "description": "Web-App for FSComposer",
+  "main": "webapp/index.html",
+  "repository": "https://github.com/Beornegar/FSComposerWebAPP.git",
+  "author": "Dennis Kraus",
+  "license": "MIT"
+}
