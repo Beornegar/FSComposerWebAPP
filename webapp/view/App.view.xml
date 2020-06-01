@@ -1,0 +1,10 @@
+<mvc:View controllerName="lp.fscomposer.controller.App" 
+	displayBlock="true"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" >
+	<Shell id="shell">
+		<App id="app">
+			<mvc:XMLView viewName="lp.fscomposer.view.MainPage"/>
+		</App>
+	</Shell>
+</mvc:View>

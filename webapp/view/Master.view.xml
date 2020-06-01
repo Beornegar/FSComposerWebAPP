@@ -1,0 +1,8 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" controllerName="lp.fscomposer.controller.Master">
+    <Page>
+        <content>
+            <Text text="Master View" />
+        </content>
+    </Page>
+</core:View>
