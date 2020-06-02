@@ -1,10 +1,33 @@
-<mvc:View controllerName="lp.fscomposer.controller.App" 
+<mvc:View
+	controllerName="sap.ui.demo.fiori2.controller.App"
 	displayBlock="true"
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns="sap.m" >
-	<Shell id="shell">
-		<App id="app">
-			<mvc:XMLView viewName="lp.fscomposer.view.MainPage"/>
-		</App>
-	</Shell>
+	height="100%"
+	xmlns="sap.f"
+	xmlns:m="sap.m"
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc">
+
+<m:Page>
+        <m:headerContent>
+           <u:FileUploader
+                        id="fileUploader"
+                        change="handleValueChange"
+                        style="Emphasized"
+                        fileType="xml"
+                        buttonOnly="true"
+                        buttonText="Upload file"
+                        maximumFileSize="1"
+                        icon="sap-icon://upload"
+                        placeholder="Choose a file for Upload..." />
+        </m:headerContent>
+
+        <FlexibleColumnLayout
+		id="flexibleColumnLayout"
+		stateChange=".onStateChanged"
+		backgroundDesign="Solid"
+		layout="{/layout}"/>
+			
+    </m:Page>
+
+	
 </mvc:View>
