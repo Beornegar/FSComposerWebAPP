@@ -8,7 +8,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="FoldingSheet PuzzelGroups"/>
+					<Title text="{i18n>master.title.Sheets}"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -19,68 +19,51 @@
 				<OverflowToolbar class="sapFDynamicPageAlignContent">
 					<ToolbarSpacer/>
 				</OverflowToolbar>
-				<!-- <List
-                    growing="true"
-                    growingThreshold="10"
-                    busyIndicatorDelay="500"
-                    enableBusyIndicator="true"
-                    noDataText="No products available"
-                    items="{viewData>/PuzzelGroup}">
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <Title text="Groups" level="H2" />
-                        </OverflowToolbar>
-                    </headerToolbar>
-                <StandardListItem title="{viewData>Name}"/>
-                </List> -->
-				<Table
+
+				<Table mode="MultiSelect"
+					alternateRowColors="true"
 					id="productsTable"
 					inset="false"
 					items="{
-						path: 'viewData>/PuzzelGroup'
+						path: 'viewData>/Sheets',
+						sorter : {
+							path : 'MasterViewData/PuzzelGroupName',
+							group : true
+						}
 					}"
 					class="sapFDynamicPageAlignContent">
 					<columns>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="Name"/>
+							<Text text="{i18n>master.table.column.Name}"/>
 						</Column>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="Costs"/>
+							<Text text="{i18n>master.table.column.Costs}"/>
 						</Column>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="NumberOfOrders"/>
+							<Text text="{i18n>master.table.column.NumberOfCopies}"/>
 						</Column>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="NumberOfSheets"/>
+							<Text text="{i18n>master.table.column.WasteAmount}"/>
 						</Column>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="OrdersPerSheet"/>
+							<Text text="{i18n>master.table.column.WasteCosts}"/>
 						</Column>
 						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="ProducedQuantity"/>
+							<Text text="{i18n>master.table.column.CPI}"/>
 						</Column>
-						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="OrderedQuantity"/>
-						</Column>
-						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="WasteCosts"/>
-						</Column>
-						<Column demandPopin="true" minScreenWidth="phone">
-							<Text text="WasteQuantity"/>
-						</Column> 
 					</columns>
 					<items>
 						<ColumnListItem type="Navigation" press=".onListItemPress">
 							<cells>
-								<ObjectIdentifier title="{viewData>Name}" />
-								<Text text="{viewData>Costs}" />
-								<Text text="{viewData>NumberOfOrders}" />
-								<Text text="{viewData>NumberOfSheets}" />
-								<Text text="{viewData>OrdersPerSheet}" />
-								<Text text="{viewData>ProducedQuantity}" />
-								<Text text="{viewData>OrderedQuantity}" />
-								<Text text="{viewData>WasteCosts}" />
-								<Text text="{viewData>WasteQuantity}" />
+								<ObjectIdentifier title="Bogen {viewData>Name}" />
+								<Text text="{
+											path: 'viewData>MasterViewData/Costs',
+											formatter: '.formatter.numberToTwoDecimals'
+										}" />
+								<Text text="{viewData>MasterViewData/Auflage}" />
+								<Text text="{viewData>MasterViewData/WasteAmount}" />
+								<Text text="{viewData>MasterViewData/WasteCosts}" />
+								<Text text="{viewData>MasterViewData/CPI}" />
 							</cells>
 						</ColumnListItem>
 					</items>

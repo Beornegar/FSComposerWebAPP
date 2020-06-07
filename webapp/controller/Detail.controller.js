@@ -43,9 +43,30 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
       this._product =
         oEvent.getParameter("arguments").product || this._product || "0";
       this.getView().bindElement({
-        path: "/ProductCollection/" + this._product,
-        model: "products",
+        path: "/Sheets/" + this._product,
+        model: "viewData",
       });
+
+      const panel = this.getView().byId("sheetPanel");
+
+      const model = this.getView().getModel("viewData");
+      const data = model.getObject(
+        "/Sheets/" + this._product + "/DetailViewData/Frontside"
+      );
+
+      let ui_elem;
+      if (
+        data &&
+        data.children.length === 1 &&
+        data.firstElementChild.nodeName === "C"
+      ) {
+        ui_elem = UIElem.fromXML(data.firstElementChild);
+        const svg = ui_elem.toSVG();
+        console.log(svg);
+        panel.setContent(svg.node.outerHTML);
+      }
+
+      console.log(ui_elem);
     },
 
     onEditToggleButtonPress: function () {

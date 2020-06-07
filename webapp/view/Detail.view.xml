@@ -4,7 +4,8 @@
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
 	<ObjectPageLayout
 		id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
@@ -16,7 +17,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{products>Name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{viewData>DetailViewData/PuzzelGroupData/Name}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
@@ -27,7 +28,7 @@
 								displaySize="S"
 								displayShape="Square"
 								class="sapUiTinyMarginEnd"/>
-							<m:Title text="{products>Name}" wrapping="true"/>
+							<m:Title text="{viewData>DetailViewData/PuzzelGroupData/Name}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -53,7 +54,7 @@
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
 
-				<actions>
+				<!-- <actions>
 					<m:ToggleButton
 						text="Edit"
 						type="Emphasized"
@@ -67,7 +68,7 @@
 					<m:Button
 						icon="sap-icon://action"
 						type="Transparent"/>
-				</actions>
+				</actions> -->
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
@@ -80,63 +81,96 @@
 					class="sapUiTinyMarginEnd">
 				</f:Avatar>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Main Category"/>
-					<m:Text text="{products>MainCategory}"/>
+					<m:Label text="{i18n>detail.headerContent.Costs}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/Costs}"/>
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Subcategory"/>
-					<m:Text text="{products>Category}"/>
+					<m:Label text="{i18n>detail.headerContent.NumberOfSheets}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/NumberOfSheets}"/>
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Price"/>
-					<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
+					<m:Label text="{i18n>detail.headerContent.NumberOfOrders}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/NumberOfOrders}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="{i18n>detail.headerContent.OrdersPerSheet}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/OrdersPerSheet}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="{i18n>detail.headerContent.OrderedQuantity}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/OrderedQuantity}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="{i18n>detail.headerContent.ProducedQuantity}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/ProducedQuantity}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="{i18n>detail.headerContent.WasteCosts}"/>
+					<m:Text text="{viewData>DetailViewData/PuzzelGroupData/WasteCosts}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="{i18n>detail.headerContent.WasteQuantity}"/>
+					<m:ObjectNumber number="{viewData>DetailViewData/PuzzelGroupData/WasteQuantity}" emphasized="false"/>
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
 
 		<sections>
-			<ObjectPageSection title="General Information">
+	
+			<ObjectPageSection title="{i18n>detail.sheet.sheetSVG}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Text text="{products>ProductId}"/>
-									<m:Label text="Description"/>
-									<m:Text text="{products>Description}"/>
-									<m:Label text="Supplier"/>
-									<m:Text text="{products>SupplierName}"/>
-								</form:content>
-							</form:SimpleForm>
+							<core:HTML id="sheetPanel"></core:HTML>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="{i18n>detail.sheet.orders}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
 							<m:Table
 								id="suppliersTable"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								items="{path : 'viewData>DetailViewData/OrderList/Order'}">
 								<m:columns>
-									<m:Column/>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.KaufPos}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.Planauftrag}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.Material}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.OrderedQuantity}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.ProducedQuantity}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.WasteQuantity}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.WasteCosts}"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="phone">
+										<m:Text text="{i18n>detail.table.orders.Aequivalence}"/>
+									</m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:ObjectIdentifier text="{products>text}"/>
+											<m:ObjectIdentifier text="{viewData>KaufPos}"/>
+											<m:Text text="{viewData>Planauftrag}" />
+											<m:Text text="{viewData>Material}" />
+											<m:Text text="{viewData>OrderedQuantity}" />
+											<m:Text text="{viewData>ProducedQuantity}" />
+											<m:Text text="{viewData>WasteQuantity}" />
+											<m:Text text="{viewData>WasteCosts}" />
+											<m:Text text="{viewData>Aequivalence}" />
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
