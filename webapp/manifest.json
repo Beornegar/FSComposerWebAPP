@@ -41,6 +41,12 @@
       },
       "viewData": {
         "type": "sap.ui.model.xml.XMLModel"
+      },
+      "dbList": {
+        "type": "sap.ui.model.xml.XMLModel"
+      },
+      "usedList": {
+        "type": "sap.ui.model.xml.XMLModel"
       }
     },
     "routing": {

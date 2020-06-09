@@ -30,7 +30,7 @@
     <m:footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Accept" text="{i18n>app.footer.saveBtn}"/>
+				<m:Button type="Accept" text="{i18n>app.footer.saveBtn}" press="onSaveBtnPress"/>
 			</m:OverflowToolbar>
 		</m:footer>
 

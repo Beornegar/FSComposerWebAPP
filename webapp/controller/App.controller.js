@@ -8,6 +8,9 @@ sap.ui.define(
         this.oOwnerComponent = this.getOwnerComponent();
         this.oRouter = this.oOwnerComponent.getRouter();
         this.oRouter.attachRouteMatched(this.onRouteMatched, this);
+
+        this.getView().getModel("dbList").setXML("<DBList></DBList>");
+        this.getView().getModel("usedList").setXML("<PlAufList></PlAufList>");
       },
 
       onRouteMatched: function (oEvent) {
@@ -106,6 +109,11 @@ sap.ui.define(
       onExit: function () {
         this.oRouter.detachRouteMatched(this.onRouteMatched, this);
         this.oRouter.detachBeforeRouteMatched(this.onBeforeRouteMatched, this);
+      },
+
+      onSaveBtnPress: function () {
+        const model = this.getView().getModel("viewData");
+        const model2 = this.getView().getModel("saveData");
       },
     });
   }

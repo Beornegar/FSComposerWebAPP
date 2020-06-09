@@ -13,6 +13,28 @@ sap.ui.define(
         this.oRouter = this.getOwnerComponent().getRouter();
       },
 
+      onSelectionChange: function (oEvent) {
+        var dbListModel = this.getView().getModel("dbList");
+        var usedListModel = this.getView().getModel("usedList");
+
+        const selected = oEvent.getParameters().selected;
+        const selectedItem = oEvent
+          .getParameters()
+          .listItem.getBindingContext("viewData")
+          .getObject();
+
+        if (selected) {
+          dbListModel
+            .getProperty("/DBList")
+            .setData(selectedItem.getObject("/DBList"));
+
+          usedListModel
+            .getProperty("/PlAufList")
+            .setData(selectedItem.getObject("/PlAufList"));
+        } else {
+        }
+      },
+
       onListItemPress: function (oEvent) {
         var productPath = oEvent
             .getSource()
