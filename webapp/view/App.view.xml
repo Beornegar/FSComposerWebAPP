@@ -5,29 +5,36 @@
 	xmlns="sap.f"
 	xmlns:m="sap.m"
 	xmlns:u="sap.ui.unified"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc" >
 
-<m:Page>
-        <m:headerContent>
-           <u:FileUploader
-                        id="fileUploader"
-                        change="handleValueChange"
-                        style="Emphasized"
-                        fileType="xml"
-                        buttonOnly="true"
-                        buttonText="Upload file"
-                        maximumFileSize="1"
-                        icon="sap-icon://upload"
-                        placeholder="Choose a file for Upload..." />
-        </m:headerContent>
+  <m:Page>
+    <m:headerContent>
+      <u:FileUploader
+        id="fileUploader"
+        change="handleValueChange"
+        style="Emphasized"
+        fileType="xml"
+        buttonOnly="true"
+        buttonText="Upload file"
+        maximumFileSize="1"
+        icon="sap-icon://upload"
+        placeholder="Choose a file for Upload..." />
+    </m:headerContent>
 
-        <FlexibleColumnLayout
-		id="flexibleColumnLayout"
-		stateChange=".onStateChanged"
-		backgroundDesign="Solid"
-		layout="{/layout}"/>
-			
-    </m:Page>
+    <FlexibleColumnLayout
+		  id="flexibleColumnLayout"
+		  stateChange=".onStateChanged"
+		  backgroundDesign="Solid"
+		  layout="{/layout}" />
+
+    <m:footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="{i18n>app.footer.saveBtn}"/>
+			</m:OverflowToolbar>
+		</m:footer>
+
+  </m:Page>
 
 	
 </mvc:View>
