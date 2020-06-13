@@ -1,0 +1,4 @@
+applications:
+  - name: fs_composer_fe
+    memory: 128M
+    buildpack: staticfile_buildpack
