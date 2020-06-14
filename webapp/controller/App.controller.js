@@ -61,7 +61,6 @@ sap.ui.define(["sap/ui/model/json/JSONModel", "sap/ui/core/mvc/Controller", "sap
       const frontendModel = this.getView().getModel("viewData");
       const saveModel = this.getView().getModel("saveData");
 
-      console.log(file);
       this.getView().getModel().setProperty("/filename", file.name);
 
       if (file && window.FileReader) {
@@ -89,7 +88,7 @@ sap.ui.define(["sap/ui/model/json/JSONModel", "sap/ui/core/mvc/Controller", "sap
           };
 
           // set the XHR request parameters
-          xhttp.open("POST", "https://localhost:44371/sap2lepo?withFrontendInformation=true", true);
+          xhttp.open("POST", "https://composer-bright-wolf-ui.cfapps.us10.hana.ondemand.com/sap2lepo?withFrontendInformation=true", true);
           xhttp.setRequestHeader("Accept", "*/*");
           xhttp.setRequestHeader("content-type", "application/xml");
           // fire the XHR request with data in body
