@@ -1,0 +1,19 @@
+{
+  "welcomeFile": "/UI5/index.html",
+  "authenticationMethod": "none",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/UI5/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    },
+    {
+      "source": "^/puzzel_service",
+      "target": "/sap2lepo?withFrontendInformation=true",
+      "destination": "puzzel_service"
+    }
+  ]
+}

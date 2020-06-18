@@ -1,0 +1,31 @@
+ID: MTA_Destination_Test
+_schema-version: '2.1'
+version: 0.0.2
+
+modules:
+ - name: UI5
+   type: html5
+   path: UI5
+   parameters:
+      disk-quota: 512M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_MTA_Destination_Test
+    - name: dest_MTA_Destination_Test
+
+resources:
+ - name: uaa_MTA_Destination_Test
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+ - name: dest_MTA_Destination_Test
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+
